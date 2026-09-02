@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    container_name: gitlab
+    restart: always
+    hostname: gitlab.example.com
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        # Configuración externa (CAMBIAR a tu dominio)
+        external_url 'http://gitlab.example.com'
+        
+        # Si tienes HTTPS (recomendado)
+        # external_url 'https://gitlab.example.com'
+        # nginx['ssl_certificate'] = '/etc/gitlab/ssl/gitlab.crt'
+        # nginx['ssl_certificate_key'] = '/etc/gitlab/ssl/gitlab.key'
+        
+        # PostgreSQL (usar SQLite integrado es más simple)
+        # gitlab_rails['db_adapter'] = 'postgresql'
+        
+        # SSH Port (si quieres cambiar de 22)
+        # gitlab_rails['gitlab_shell_ssh_port'] = 2424
+    ports:
+      - "80:80"
+      - "443:443"
+      - "22:22"
+    volumes:
+      - /mnt/media/gitlab/config:/etc/gitlab
+      - /mnt/media/gitlab/logs:/var/log/gitlab
+      - /mnt/media/gitlab/data:/var/opt/gitlab
+    shm_size: '256m'
