@@ -10,15 +10,12 @@ services:
       GITLAB_OMNIBUS_CONFIG: |
         # Configuración externa (CAMBIAR a tu dominio)
         external_url 'http://gitlab.example.com'
-        
         # Si tienes HTTPS (recomendado)
         # external_url 'https://gitlab.example.com'
         # nginx['ssl_certificate'] = '/etc/gitlab/ssl/gitlab.crt'
         # nginx['ssl_certificate_key'] = '/etc/gitlab/ssl/gitlab.key'
-        
         # PostgreSQL (usar SQLite integrado es más simple)
         # gitlab_rails['db_adapter'] = 'postgresql'
-        
         # SSH Port (si quieres cambiar de 22)
         # gitlab_rails['gitlab_shell_ssh_port'] = 2424
     ports:
